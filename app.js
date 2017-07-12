@@ -1,9 +1,49 @@
 // TODO
 // 
 
-let GroceryListItem = (props) => (
-  <li>{props.item}</li>
-)
+class GroceryListItem extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hover: false  
+    };
+  }
+
+  onMouseEnter() {
+    this.setState({
+      hover: true
+    });
+  }
+
+  onMouseLeave() {
+    this.setState({
+      hover: false
+    });
+  }
+
+  //   onListItemClick() {
+  //   this.setState({
+  //     done: !this.state.done
+  //   });
+  // }
+  
+  render() {
+
+    var style = {
+      fontWeight: this.state.hover ? 'bold' : 'normal'
+    };
+
+    //  var style = {
+    //   textDecoration: this.state.done ? 'line-through' : 'none'
+    // };
+
+    return ( 
+      <li style={style} onMouseEnter={this.onMouseEnter.bind(this)} onMouseLeave={this.onMouseLeave.bind(this)}>{this.props.item}</li> 
+    );
+  }
+};
 
 const GroceryList = (props) => (
 
